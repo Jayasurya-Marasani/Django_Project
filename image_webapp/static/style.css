@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
+
+/* Global styles */
+html {
+    font-size: 100%;
+    box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    font-family: 'JetBrains Mono';
+    font-size: 1rem;
+}
+
+/* Container styles */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Heading styles */
+h1 {
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 0;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-top: 0;
+}
+
+/* Form styles */
+.form-container {
+    max-width: auto;
+    margin: 0 auto;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    margin-bottom: 5px;
+    width: 10rem;
+}
+
+.form-control {
+    width: auto;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+}
+
+.form-select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-secondary {
+    background-color: #555;
+}
+
+/* Image container styles */
+.image-row {
+    display: block;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    width: auto;
+}
+.row {
+    justify-content: center;
+}
+.image-container {
+    /* flex: 0 0 calc(33.33% - 20px);
+    margin: 10px;
+    text-align: center; */
+    display: flex;
+    justify-content: center;
+    
+}
+
+/* Histogram styles */
+.histogram-row {
+    display: block;
+    justify-content: center;
+
+    margin-top: 20px;
+}
+
+.histogram-container {
+    width: 100%;
+    height: auto;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.histogram {
+    display: inline-block;
+    height: auto;
+    width: 100%;
+}
+/* Bar styles */
+.bar {
+    height: 20px;
+    width: 10px;
+    border: 1px solid #ccc;
+    margin: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.bar:hover {
+    background-color: #f00;
+    cursor: pointer;
+}
+
