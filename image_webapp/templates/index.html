@@ -155,35 +155,52 @@
 
             Plotly.newPlot('original_histogram', data1, layout1);
             Plotly.newPlot('restored_histogram', data2, layout2);
-
             function resetForm() {
-                    // Reset the form fields
-                    document.getElementById("image").value = "";
-                    document.getElementById("noise_type").value = "gaussian";
-                    document.getElementById("noise_level").value = "0.1";
-                    document.getElementById("restoration_technique").value = "gaussian_filter";
+                        // Reset the form fields
+                document.getElementById("image").value = "";
+                document.getElementById("noise_type").value = "gaussian";
+                document.getElementById("noise_level").value = "0.1";
+                document.getElementById("restoration_technique").value = "gaussian_filter";
 
-                    // Remove the image elements
-                    var originalImage = document.getElementById("original_image");
-                    var noisyImage = document.getElementById("noisy_image");
-                    var restoredImage = document.getElementById("restored_image");
-                    var row = document.getElementsByClassName("row")[0];
-                    row.parentNode.removeChild(row);
-                    if (originalImage) {
-                        originalImage.parentNode.removeChild(originalImage);
-                    }
-                    if (noisyImage) {
-                        noisyImage.parentNode.removeChild(noisyImage);
-                    }
-                    if (restoredImage) {
-                        restoredImage.parentNode.removeChild(restoredImage);
-                    }
-
-                    // Clear the histograms
-                    Plotly.purge('original_histogram');
-                    Plotly.purge('restored_histogram');
+                // Remove the image elements
+                var originalImage = document.getElementById("original_image");
+                var noisyImage = document.getElementById("noisy_image");
+                var restoredImage = document.getElementById("restored_image");
+                var row = document.getElementsByClassName("row")[0];
+                row.parentNode.removeChild(row);
+                if (originalImage) {
+                    originalImage.parentNode.removeChild(originalImage);
                 }
-        </script>
+                if (noisyImage) {
+                    noisyImage.parentNode.removeChild(noisyImage);
+                }
+                if (restoredImage) {
+                    restoredImage.parentNode.removeChild(restoredImage);
+                }
+
+                // Clear the histograms
+                Plotly.purge('original_histogram');
+                Plotly.purge('restored_histogram');
+
+                // Delete the images
+                fetch('/delete_images/', {
+                    method: 'POST',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                'Content-Type': 'application/json'
+                    }
+                }).then(response => {
+                    if (response.ok) {
+                                console.log('Images deleted successfully');
+                    } else {
+                                console.error('Failed to delete images');
+                    }
+                }).catch(error => {
+                                console.error('An error occurred:', error);
+                    });
+                }
+            </script>
+
         {% endif %}
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"

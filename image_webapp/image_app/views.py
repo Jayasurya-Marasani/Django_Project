@@ -5,12 +5,17 @@ from django.conf import settings
 from django.shortcuts import render
 from io import BytesIO
 import base64
+from django.http import JsonResponse
+from django.http import HttpResponseServerError
 
+global imd
 def index(request):
     if request.method == 'POST':
         # Save the uploaded image
         uploaded_image = request.FILES['image']
         image_path = os.path.join(settings.MEDIA_ROOT, uploaded_image.name)
+        global imd 
+        imd = uploaded_image.name
         with open(image_path, 'wb+') as destination:
             for chunk in uploaded_image.chunks():
                 destination.write(chunk)
@@ -107,3 +112,23 @@ def image_to_base64(image_path):
         image_base64 = base64.b64encode(image_data).decode('utf-8')
 
     return image_base64
+
+def delete_images(request):
+    try:
+        global imd
+        # Delete the uploaded image, noisy image, and restored image
+        image_path = os.path.join(settings.MEDIA_ROOT, imd)
+        noisy_image_path = os.path.join(settings.MEDIA_ROOT, 'noisy_image.png')
+        restored_image_path = os.path.join(settings.MEDIA_ROOT, 'restored_image.png')
+
+        # Delete the images if they exist
+        if os.path.exists(image_path):
+            os.remove(image_path)
+        if os.path.exists(noisy_image_path):
+            os.remove(noisy_image_path)
+        if os.path.exists(restored_image_path):
+            os.remove(restored_image_path)
+
+        return JsonResponse({'message': 'Images deleted successfully'})
+    except Exception as e:
+        return HttpResponseServerError(f'Failed to delete images: {str(e)}')

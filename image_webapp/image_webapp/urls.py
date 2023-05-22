@@ -20,4 +20,5 @@ from image_app import views
 
 urlpatterns = [
    path('', views.index, name='index'),
+   path('delete_images/', views.delete_images, name='delete_images'),
 ]
