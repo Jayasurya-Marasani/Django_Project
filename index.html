@@ -1,97 +1,124 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>Project Step-by-Step Explanation</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        h2 {
-            border-bottom: 2px solid #333;
-            padding-bottom: 5px;
-        }
-
-        p {
-            margin-bottom: 20px;
-        }
-
-        ul {
-            list-style-type: disc;
-            margin-left: 30px;
-        }
-
-        ol {
-            list-style-type: decimal;
-            margin-left: 30px;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Hosting</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <h1>Project Title</h1>
+    <h1>Hosting the Django Webapplication in Google Cloud Platform</h1>
 
-    <h2>Introduction</h2>
+    <h2>Pre-Requisites</h2>
     <p>
-        Provide a brief introduction to the project, explaining its purpose and goals.
-        Mention any background information that is necessary to understand the project.
+        Before you begin this tutorial, you’ll need the following:
+        <li>
+            <ul>Google Cloud Platform account</ul>
+            <ul>Django Project that you have uploaded in your Github</ul>
+        </li>
     </p>
 
-    <h2>Step 1: Planning</h2>
+    <h2>Step 1: Create a VM instance</h2>
     <p>
-        Describe the initial planning phase, including the project scope, objectives,
-        and timeline. Mention any stakeholders involved and their roles.
+        The VM instance can be created by following the below steps:
+        <li>
+            <a href = "https://console.cloud.google.com/" target ="_blank">Open the Google Cloud Platform Console</a>
+        </li>
+        <li>
+            <p>Click on the Navigation Menu</p>
+            <center><img src="css/images/NavigationMenu.png" alt="Navigation Menu"></center>
+        </li>
+        <li>
+            <p>Click on Compute Engine and Enable it if you are using it for the first time</p>
+            <center><img src="css/images/ComputeEngine.png" alt="Compute Engine"></center>
+            <center><img src="css/images/EnableComputeEngine.png" alt="click on Enable button"</center>
+        </li>
+        <li>
+            <p>Click on Create Instance</p>
+            <center><img src="css/images/CreateInstance.png" alt="Create Instance"></center>
+            </li>
+
+        <li>
+            <p>Enter the Name of the Instance</p>
+            <center><img src="css/images/InstanceName.png" alt="Instance Name"></center>
+        </li>
+        <li>
+            <p>Choose the Region and Zone</p>
+            <center><img src="css/images/RegionZone.png" alt="Region Zone"></center>
+        </li>
+        <li>
+            <p>Choose the Machine Type</p>
+            <center><img src="css/images/MachineType.png" alt="Machine Type"></center>
+        </li>
+        <li>
+            <p>Choose the Boot Disk</p>
+            <center><img src="css/images/BootDisk.png" alt="Boot Disk"></center>
+        </li>
+        <li>
+            <p>Choose the Firewall</p>
+            <center><img src="css/images/Firewall.png" alt="Firewall"</center>
+        </li>
+        <li>
+            <p>Click on Create</p>
+            <center><img src="css/images/Create.png" alt="Create"</center>
+        </li>
     </p>
 
-    <h2>Step 2: Research</h2>
+    <h2>Step 2: Setting up Essentials for Django Project</h2>
     <p>
-        Explain the research process involved in the project. Mention the resources
-        used, methodologies applied, and key findings.
+        <li>
+            <p>Click on SSH on the VM instance to connect to the machine that you created just now.</p>
+            <center><img src="css/images/SSH.png" alt="click on SSH"</center>
+        </li>
+        <li>
+            <p>Update the System and install pip3</p>
+            <code>sudo apt update</code>
+            <code>sudo apt install python3-pip</code>
+        </li>
+        <li>
+            <p>Install Django With the help of pip3</p>
+            <code>sudo pip3 install django</code>
+        </li>
+        <li>
+            <p>Also Install the necessary python libraries that may require for your Django Project. To install those packages use the syntax below</p>
+            <code>sudo pip3 install [your package name]</code>
+        </li>
     </p>
 
-    <h2>Step 3: Design</h2>
+
+    <h2>Step 3: Clone your Project from Github</h2>
     <p>
-        Detail the design phase, including any mock-ups, wireframes, or prototypes
-        created for the project.
+        <li>
+            <p>use git clone method to clone your project.</p>
+            <code>git clone "your reporistory https link" </code>
+        </li>
     </p>
 
-    <h2>Step 4: Development</h2>
+    <h2>Step 4: Deploy the Django Project</h2>
     <p>
-        Describe the development process, including programming languages, frameworks,
-        and tools used. Highlight any challenges faced and how they were overcome.
-    </p>
-
-    <h2>Step 5: Testing</h2>
-    <p>
-        Explain the testing phase, detailing the various tests conducted to ensure
-        the project's quality and functionality. Mention any bug fixing processes.
-    </p>
-
-    <h2>Step 6: Deployment</h2>
-    <p>
-        Describe the deployment process, including server setup, configuration, and
-        any other steps taken to make the project live.
-    </p>
-
-    <h2>Step 7: Maintenance</h2>
-    <p>
-        Explain the ongoing maintenance process, including updates, bug fixes, and
-        any future plans for the project.
+        <li>
+            <p>go to the directory of the django project where you can find the manage.py and make it execuatble</p>
+            <code>chmod +x manage.py</code>
+        </li>
+        <li>
+            <p>Now go to the directory of the project where you have settings.py file and edit the settings.py file as shown below:</p>
+            <code>nano settings.py</code>
+            <center><img src="css/images/ExternalIP.png" alt="External Ip address"></center>
+        </li>
+        <li>
+            <p>Now again go to the manage.py file directory and run the following command:</p>
+            <code>sudo python3 manage.py runserver 0.0.0.0:80</code>
+        </li>
+        <li>
+            <p>Now you can open the following url:</p>
+            <code>http://YOUR_EXTERNAL_IP</code>
+        </li>
     </p>
 
     <h2>Conclusion</h2>
     <p>
-        Summarize the project and its outcomes. Mention any lessons learned and
-        potential areas for improvement in future projects.
+        This is how you can Host your Django Application in Google Cloud Platform
     </p>
 </body>
 
